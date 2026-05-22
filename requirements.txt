@@ -1,0 +1,5 @@
+Flask==3.0.0
+textblob==0.17.1
+language-tool-python==2.7.1
+python-dotenv==1.0.0
+gunicorn==21.2.0

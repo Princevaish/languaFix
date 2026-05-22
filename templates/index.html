@@ -1,0 +1,520 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LanguaFix - AI Grammar Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <span class="logo-text">LanguaFix</span>
+                <span class="logo-subtitle">AI Grammar Analyzer</span>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                Natural Language Processing Demo
+            </div>
+            <h1 class="hero-title">LanguaFix — AI Grammar Intelligence</h1>
+            <p class="hero-description">Advanced NLP-powered grammar analysis, spelling correction, and writing quality scoring.</p>
+            
+            <div class="tech-capabilities">
+                <div class="capability-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>NLP Grammar Analysis</span>
+                </div>
+                <div class="capability-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    <span>Spell Correction Engine</span>
+                </div>
+                <div class="capability-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Writing Quality Score</span>
+                </div>
+                <div class="capability-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>LanguageTool + TextBlob</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-strip">
+        <div class="process-container">
+            <div class="process-step">
+                <div class="process-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                </div>
+                <div class="process-label">Input Text</div>
+            </div>
+            <div class="process-arrow">→</div>
+            <div class="process-step">
+                <div class="process-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l-4.2 4.2m11.4-4.2l-4.2-4.2m0-6l-4.2-4.2"></path>
+                    </svg>
+                </div>
+                <div class="process-label">NLP Processing</div>
+            </div>
+            <div class="process-arrow">→</div>
+            <div class="process-step">
+                <div class="process-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <div class="process-label">Grammar Detection</div>
+            </div>
+            <div class="process-arrow">→</div>
+            <div class="process-step">
+                <div class="process-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="process-label">Corrected Output</div>
+            </div>
+        </div>
+    </section>
+
+    {% if error %}
+    <div class="notification notification-error" id="errorNotification">
+        <div class="notification-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">Error</div>
+            <div class="notification-message">{{ error }}</div>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+    </div>
+    {% endif %}
+
+    <main class="main-container" id="correction">
+        <div class="section-header">
+            <h2 class="section-title">Interactive Grammar Analysis</h2>
+            <p class="section-description">Paste text or upload a document to analyze grammar, spelling, readability, and writing quality using NLP.</p>
+        </div>
+
+        <div class="correction-grid">
+            <div class="glass-card ai-module" id="textCorrectionCard">
+                <div class="module-badge">Module 01</div>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Text Analyzer</h2>
+                        <p class="card-subtitle">Real-time NLP grammar and spelling correction</p>
+                    </div>
+                </div>
+
+                <form id="textForm" action="/spell" method="POST" class="correction-form">
+                    <div class="form-group">
+                        <label for="textInput">Input Text</label>
+                        <textarea 
+                            id="textInput" 
+                            name="text" 
+                            placeholder="Type or paste your text here for analysis..."
+                            rows="8"
+                        ></textarea>
+                        <div class="textarea-footer">
+                            <span class="char-count" id="charCount">0 characters</span>
+                            <button type="button" class="btn-clear" id="clearText">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-neon" id="correctBtn">
+                            <span class="btn-text">Analyze Text</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                        <button type="button" class="btn-api" id="useApiBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            API Mode
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="glass-card ai-module" id="fileUploadCard">
+                <div class="module-badge">Module 02</div>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Document Analyzer</h2>
+                        <p class="card-subtitle">Batch processing for text documents</p>
+                    </div>
+                </div>
+
+                <form id="fileForm" action="/grammar" method="POST" enctype="multipart/form-data" class="correction-form">
+                    <div class="form-group">
+                        <label>Upload Document</label>
+                        <div class="file-drop-zone" id="fileDropZone">
+                            <input type="file" name="file" id="fileInput" accept=".txt,.doc,.docx,.pdf">
+                            <div class="file-drop-content">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <p class="file-drop-text">Click to upload or drag & drop</p>
+                                <p class="file-drop-hint">TXT, DOC, DOCX, PDF (max 16MB)</p>
+                            </div>
+                            <div class="file-selected" id="fileSelected" style="display: none;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                                <span id="fileName"></span>
+                                <button type="button" class="btn-remove-file" id="removeFile">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-neon" id="analyzeBtn">
+                        <span class="btn-text">Analyze Document</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        {% if corrected_text or corrected_file_text %}
+        <div class="results-container" id="resultsContainer">
+            <div class="results-header">
+                <div>
+                    <h2 class="results-title">AI Analysis Dashboard</h2>
+                    <p class="results-subtitle">Language Quality Metrics</p>
+                </div>
+                <div class="results-actions">
+                    <button class="btn-icon" onclick="copyResults()" title="Copy Results">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" onclick="downloadResults()" title="Download Results">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            {% set stats = statistics if corrected_text else file_statistics %}
+            {% if stats %}
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">{{ stats.word_count }}</div>
+                        <div class="stat-label">Words Analyzed</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-success">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">{{ stats.grammar_score }}</div>
+                        <div class="stat-label">Quality Score</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-warning">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">{{ stats.total_errors }}</div>
+                        <div class="stat-label">Issues Detected</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-info">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">{{ stats.reading_time.minutes }}:{{ '%02d'|format(stats.reading_time.seconds) }}</div>
+                        <div class="stat-label">Reading Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grammar-score-section">
+                <div class="score-label">Grammar Intelligence Score</div>
+                <div class="score-progress">
+                    <div class="score-progress-bar" style="width: {{ stats.grammar_score }}%">
+                        <span class="score-progress-text">{{ stats.grammar_score }}%</span>
+                    </div>
+                </div>
+                <div class="score-description">
+                    {% if stats.grammar_score >= 90 %}
+                    <span class="score-badge score-excellent">Excellent</span>
+                    {% elif stats.grammar_score >= 75 %}
+                    <span class="score-badge score-good">Good</span>
+                    {% elif stats.grammar_score >= 60 %}
+                    <span class="score-badge score-fair">Fair</span>
+                    {% else %}
+                    <span class="score-badge score-poor">Needs Improvement</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="results-tabs">
+                <button class="tab-btn active" data-tab="corrected">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Corrected Text
+                </button>
+                <button class="tab-btn" data-tab="grammar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Grammar Analysis
+                    {% if stats and stats.grammar_error_count > 0 %}
+                    <span class="tab-badge">{{ stats.grammar_error_count }}</span>
+                    {% endif %}
+                </button>
+                <button class="tab-btn" data-tab="spelling">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                    </svg>
+                    Spelling Analysis
+                    {% if stats and stats.spelling_error_count > 0 %}
+                    <span class="tab-badge">{{ stats.spelling_error_count }}</span>
+                    {% endif %}
+                </button>
+                <button class="tab-btn" data-tab="stats">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    Detailed Statistics
+                </button>
+            </div>
+
+            <div class="tab-content active" id="correctedTab">
+                <div class="result-box">
+                    <div class="result-box-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>NLP-Corrected Output</span>
+                    </div>
+                    <div class="result-content">
+                        {{ corrected_text if corrected_text else corrected_file_text }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="grammarTab">
+                <div class="result-box">
+                    <div class="result-box-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>Grammar Detection Results</span>
+                    </div>
+                    <div class="errors-list">
+                        {% set grammar_text = corrected_grammar if corrected_grammar else corrected_file_grammar %}
+                        {% if grammar_text and 'No grammar errors found' not in grammar_text %}
+                            <pre class="error-content">{{ grammar_text }}</pre>
+                        {% else %}
+                            <div class="no-errors">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <p>No grammar errors detected!</p>
+                                <span>Your text is grammatically correct.</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="spellingTab">
+                <div class="result-box">
+                    <div class="result-box-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                        </svg>
+                        <span>Spelling Detection Results</span>
+                    </div>
+                    <div class="errors-list">
+                        {% if stats and stats.spelling_error_count > 0 %}
+                            <div class="error-item">
+                                <div class="error-indicator"></div>
+                                <div class="error-details">
+                                    <div class="error-message">{{ stats.spelling_error_count }} spelling error(s) corrected</div>
+                                    <div class="error-suggestion">Review the corrected text to see changes</div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="no-errors">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <p>No spelling errors detected!</p>
+                                <span>All words are spelled correctly.</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="statsTab">
+                {% if stats %}
+                <div class="stats-grid">
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Word Count</div>
+                        <div class="stat-detail-value">{{ stats.word_count }}</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Character Count</div>
+                        <div class="stat-detail-value">{{ stats.character_count }}</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Reading Time</div>
+                        <div class="stat-detail-value">{{ stats.reading_time.minutes }}m {{ stats.reading_time.seconds }}s</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Total Errors</div>
+                        <div class="stat-detail-value">{{ stats.total_errors }}</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Spelling Errors</div>
+                        <div class="stat-detail-value">{{ stats.spelling_error_count }}</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Grammar Errors</div>
+                        <div class="stat-detail-value">{{ stats.grammar_error_count }}</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Grammar Score</div>
+                        <div class="stat-detail-value">{{ stats.grammar_score }}%</div>
+                    </div>
+                    <div class="stat-detail-card">
+                        <div class="stat-detail-label">Quality Rating</div>
+                        <div class="stat-detail-value">
+                            {% if stats.grammar_score >= 90 %}
+                            A+
+                            {% elif stats.grammar_score >= 80 %}
+                            A
+                            {% elif stats.grammar_score >= 70 %}
+                            B
+                            {% elif stats.grammar_score >= 60 %}
+                            C
+                            {% else %}
+                            D
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <div id="apiResultsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>API Response</h3>
+                <button class="modal-close" onclick="closeApiModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="apiResultsBody"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
