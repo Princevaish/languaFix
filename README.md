@@ -746,5 +746,3 @@ The project demonstrates:
 - SaaS-ready engineering patterns
 
 ---
-
-Built with ❤️ using Flask, NLP, and modern backend engineering principles.
